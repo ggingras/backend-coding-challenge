@@ -45,7 +45,7 @@ namespace CitiesAutoComplete.Services
 					if (criteria.SearchSize != int.MinValue)
 						s.Size(criteria.SearchSize);
 					s.Index(criteria.IndexName);
-					;
+					
 					s.Sort(sort => sort.Descending(SortSpecialField.Score).Ascending("name.raw"));
 					s.Query(q => SearchQuery(q, criteria));
 #if DEBUG
