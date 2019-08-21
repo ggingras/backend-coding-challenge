@@ -1,0 +1,93 @@
+PUT _template/city_template
+{
+  "index_patterns" : "city*",
+  "version" : 1,
+  "settings" : {
+    "index.refresh_interval" : "300s",
+    "index.number_of_shards": "1",
+	"index.number_of_replicas": "0",
+    "analysis": {
+          "filter": {
+            "custom_asciifolding": {
+              "type": "asciifolding",
+              "preserve_original": "true",
+			  "split_on_numerics" : "true",
+			  "generate_number_parts" : "false",			  
+			  "generate_word_parts" : "true"
+            }
+          },
+          "normalizer": {
+            "my_normalizer": {
+              "filter": [
+                "lowercase",
+                "custom_asciifolding"
+              ],
+              "type": "custom"
+            }
+          },
+          "analyzer": {
+            "3ngrams_analyzer": {
+              "filter": [
+                "lowercase",
+                "custom_asciifolding"
+              ],
+              "type": "custom",
+              "tokenizer": "3ngrams"
+            }
+          },
+          "tokenizer": {
+            "3ngrams": {
+              "token_chars": [
+                "digit",
+                "letter",
+                "punctuation"
+              ],
+              "min_gram": "3",
+              "type": "ngram",
+              "max_gram": "3"
+            }
+          }
+        }
+  },
+  "mappings" : {
+      "_source": {
+        "enabled": true
+      },
+		"properties": {
+          "id": {
+            "type": "long"
+          },
+		  "countryCode": {
+            "type": "keyword",
+            "normalizer": "my_normalizer"
+          },
+		  "fullText": {
+            "type": "keyword",             
+            "normalizer": "my_normalizer"
+          },          
+          "location": {
+            "type": "geo_point"
+          },
+          "altName": {
+            "type": "text",
+            "fields": {
+              "raw": {
+                "type": "keyword",
+                "normalizer": "my_normalizer"
+              }
+            },
+            "analyzer": "3ngrams_analyzer"
+          },
+          "name": {
+            "type": "text",
+            "fields": {
+              "raw": {
+                "type": "keyword",
+                "normalizer": "my_normalizer"
+              }
+            },
+            "analyzer": "3ngrams_analyzer"
+          }
+        }
+	}
+}

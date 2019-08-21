@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CitiesAutoComplete</name>
+    </assembly>
+    <members>
+        <member name="T:CitiesAutoComplete.Controllers.SuggestionsController">
+            <summary>
+            Suggestions enable full-text search on North-American cities
+            </summary>
+        </member>
+        <member name="M:CitiesAutoComplete.Controllers.SuggestionsController.GetSuggestions(CitiesAutoComplete.Models.QueryParameters)">
+            <summary>
+            Get the top 5 suggestions ordered by relevance
+            </summary>
+            <returns>An ActionResult of type IEnumerable of Suggestion</returns>
+        </member>
+        <member name="T:CitiesAutoComplete.Controllers.SuggestionsControllerV2">
+            <summary>
+            Suggestions enable full-text search on North-American cities
+            Version 2 enables paging result with parameter from and size
+            </summary>
+        </member>
+        <member name="M:CitiesAutoComplete.Controllers.SuggestionsControllerV2.GetSuggestions(CitiesAutoComplete.Models.QueryParametersV2)">
+            <summary>
+            Get a paged list of suggestions
+            </summary>
+            <returns>An ActionResult of type IEnumerable of Suggestion</returns>
+        </member>
+        <member name="P:CitiesAutoComplete.Models.QueryParameters.q">
+            <summary>
+            Search text
+            </summary>
+        </member>
+        <member name="P:CitiesAutoComplete.Models.QueryParameters.Latitude">
+            <summary>
+            Latitude close to the city you want to find
+            </summary>
+        </member>
+        <member name="P:CitiesAutoComplete.Models.QueryParameters.Longitude">
+            <summary>
+            Longitude close to the city you want to find
+            </summary>
+        </member>
+        <member name="P:CitiesAutoComplete.Models.QueryParametersV2.From">
+            <summary>
+            From result to enable paging
+            </summary>
+        </member>
+        <member name="P:CitiesAutoComplete.Models.QueryParametersV2.Size">
+            <summary>
+            Number of result in a page
+            </summary>
+        </member>
+        <member name="T:CitiesAutoComplete.Models.Suggestion">
+            <summary>
+            A suggestion result with Name, Latitude, Longitude and Score fields
+            </summary>
+        </member>
+        <member name="P:CitiesAutoComplete.Models.Suggestion.Name">
+            <summary>
+            The name of the city
+            **City**, Province/State, Country
+            </summary>
+        </member>
+        <member name="P:CitiesAutoComplete.Models.Suggestion.Latitude">
+            <summary>
+            The latitude of the city
+            </summary>
+        </member>
+        <member name="P:CitiesAutoComplete.Models.Suggestion.Longitude">
+            <summary>
+            The longitude of the city
+            </summary>
+        </member>
+        <member name="P:CitiesAutoComplete.Models.Suggestion.Score">
+            <summary>
+            The relevance score according to the search
+            **Between 0 and 1**
+            </summary>
+        </member>
+    </members>
+</doc>
