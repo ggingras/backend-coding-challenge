@@ -111,7 +111,7 @@ namespace CitiesAutoCompete.Tests.Controllers
 			(response.Result as ObjectResult).StatusCode.Should().Be(StatusCodes.Status200OK);
 			var suggestions = (response.Result as OkObjectResult).Value as Suggestion[];
 			suggestions.Length.Should().Be(1);
-			suggestions[0].Name.Should().Be(montreal.Name);
+			suggestions[0].Name.Should().Be(string.Concat(montreal.Name, ", ", montreal.Country));
 			suggestions[0].Longitude.Should().Be(montreal.Location.Lon);
 			suggestions[0].Latitude.Should().Be(montreal.Location.Lat);
 		}

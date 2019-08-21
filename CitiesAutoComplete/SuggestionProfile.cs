@@ -12,7 +12,7 @@ namespace CitiesAutoComplete
 			CreateMap<IHit<City>, Suggestion>()
 				.ForMember(c => c.Longitude, o => o.MapFrom(m => m.Source.Location.Lon))
 				.ForMember(c => c.Latitude, o => o.MapFrom(m => m.Source.Location.Lat))
-				.ForMember(c => c.Name, o => o.MapFrom(m => m.Source.Name));
+				.ForMember(c => c.Name, o => o.MapFrom(m => string.Concat(m.Source.Name, ", ", m.Source.Country)));
 		}
 	}
 }
