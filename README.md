@@ -107,6 +107,22 @@ Begin by forking this repo and cloning your fork. GitHub has apps for [Mac](http
 - I choose to deploy to Azure, since it is fully integrated with Visual Studio
 	- Api: http://40.121.71.9/api/suggestions
 	- Swagger doc: http://40.121.71.9/index.html
+	
+## ElasticSearch Implementation details
+
+- I used the template pattern for automatic index creation when loading data. You can look at the configuration in Elastic\cityTermplate.json
+- To resume the template:
+	- I setup 1 primary shard with no replica (since only 1 Elastic node)
+	- I normalize and filter the data when indexing, this allow for example to ignore casing and accent
+	- I used a NGram analyzer so it allows full-text search on part of the word only. In my case 3 letters minimum
+- For the search itself, I implemented two searches. The first one when no location is provided does a simple multi-match query search. The second case is when a location is provided. In this scenario, I used a function score to enable linear geo-location based on provided location.
+- You will see that I only used simple search configuration, but in production environment we could much more. For example:
+	- Add a synonym file
+	- Track what people are searching for and optimize the result, according to past search
+	- Add fuzzy search so it can find easily misspelled word
+	- Apply filtering by country code
+	- Apply boosting on perfect match
+	- ...
 
 ## Known issues
 
