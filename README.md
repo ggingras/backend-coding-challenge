@@ -123,6 +123,7 @@ Begin by forking this repo and cloning your fork. GitHub has apps for [Mac](http
 	- Apply filtering by country code
 	- Apply boosting on perfect match
 	- ...
+ - Note: as Google Maps does, I only return the 5 most relevant results. This, of course, is a matter of choice and is easy to change.
 
 ## Known issues
 
