@@ -41,7 +41,7 @@ namespace CitiesAutoComplete
 
 			services.AddMvc(setupAction =>
 			{
-				setupAction.EnableEndpointRouting = false;
+				//setupAction.EnableEndpointRouting = false;
 
 				var jsonOutputFormatter = setupAction.OutputFormatters.OfType<JsonOutputFormatter>().FirstOrDefault();
 				if (jsonOutputFormatter != null)

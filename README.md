@@ -92,11 +92,11 @@ Begin by forking this repo and cloning your fork. GitHub has apps for [Mac](http
 
 ## Implementation details
 
-- I think the project is developed using the best practice guidelines (Dependency injections, api versionning, unit tests, Api documentation, Async wait pattern to better scalability, ...)
+- I think the project is developed using the best practice guidelines (Dependency injections, api versioning, unit tests, Api documentation, Async wait pattern to better scalability, ...)
 - For the tech stack, I used Asp.Net Core 2.2 / C# as programming language. For the Full-Text Search engine I used ElasticSearch 7.3. I chose ElasticSearch, since I have been using it on a weekly basis for more than two years.
 - For versioning I used header implementation (api-version=2.0) instead of route implementation. I think it is respecting more the OpenClose principle which state Open for extension, but close for modification.
 - The documentation of my API is provided with Swashbuckle / Swagger, which implement the OpenApi 3.0 specification. The documentation is the default route on the website and can be accessed at "/index.html".
-- I implemented two versions of the SuggestionsController, to highlight the use of versionning in Api. Version 2 adds paging support to Api.
+- I implemented two versions of the SuggestionsController, to highlight the use of versioning in Api. Version 2 adds paging support to Api.
 - My solution is quite simple with only 3 projects:
 	- CitiesAutoComplete Web Api itSelf
 	- CitiesAutoComplete.Test for unit tests
@@ -130,4 +130,3 @@ Begin by forking this repo and cloning your fork. GitHub has apps for [Mac](http
 - ElasticSearch: The final implementation has a tweak to get the score between 0 and 1, since Lucene used TF-IDF has the scoring algorithm and does not implement a normalisation function for that
 - ElasticSearch: because of lack of resources, I only deploy one Elastic node. In a production environment, I would normally deploy at least 3 nodes.
 - Security: I deployed my site using HTTP, since I did not have any certificate available for HTTPS. In a production environment HTTPS would be the way to go.
-- Versionning does not seem to work using postman. It seems to have a breaking change with the latest version of the aspnet-api-versioning and I did not have time to look into it

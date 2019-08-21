@@ -19,6 +19,7 @@ namespace CitiesAutoComplete.Controllers
 	[Produces("application/json")]
 	[ApiVersion("2.0")]
 	[ApiController]
+	[ControllerName("Suggestions")]
 	public class SuggestionsControllerV2: ControllerBase
 	{
 		private readonly ICitySearchService _citySearchService;
